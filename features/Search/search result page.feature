@@ -33,7 +33,7 @@ Feature: Search result page
         #diameter
         And press on Diameter filter from Filter result section for wheels
         And select the option for diameter wheel
-        Then verify that products has selected diameter option on the grid
-        And uncheck selected option diameter
+#        Then verify that products has selected diameter option on the grid
+#        And uncheck selected option diameter
 And close the browser
 

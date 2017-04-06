@@ -46,7 +46,7 @@ And(/^fills the email on Login page with incorrect email ogboiko@$/) do
 end
 
 And(/^verify error message  Please enter a valid email address$/) do
-  @browser.element(:css, "div.form-caption.error-message").text == "Please enter a valid email address."
+  @browser.element(:css, "#dwfrm_login_username-error").text == "Please enter a valid Email Address."
 end
 
 Then(/^fills the email on login page with non existing email in the system$/) do

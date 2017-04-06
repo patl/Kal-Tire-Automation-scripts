@@ -87,8 +87,9 @@ And(/^press on Brand filter from Filter result section for wheels$/) do
 end
 
 And(/^select the option for brand wheel$/) do
-  sleep(2)
-   @browser.element(:xpath, ".//*[@class='scrollable menu vertical nested submenu is-accordion-submenu is-active']//li["+(@brand_option_w)+"]/a").click
+  sleep(5)
+   @browser.element(:xpath, "//li[@class='is-submenu-item is-accordion-submenu-item']["+(@brand_option_w)+"]").click
+  sleep(5)
    @brand = @browser.element(:xpath, ".//*[@class='selected is-submenu-item is-accordion-submenu-item']").text
 
   end

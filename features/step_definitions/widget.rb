@@ -50,12 +50,12 @@ Then(/^select Options for tires by vehicle$/) do
 end
 
 Then(/^select Size for tires by vehicle$/) do
-  sleep (2)
+  sleep (1)
   begin
     size = @browser.element(:link_text, "Size").present?
     if size == true
       sleep (1)
-      @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[6]/div/ul/li[1]/a")
+      @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[6]/div/ul/li[1]/a").click
     else
       puts 'nothing select'
     end
@@ -64,7 +64,7 @@ Then(/^select Size for tires by vehicle$/) do
 end
 
 When(/^verify that searched page is displayed$/) do
-  sleep(3)
+  sleep(2)
   @browser.element(:css, ".psresults-title").text == "SELECT TIRE CATEGORY"
 end
 
@@ -94,6 +94,7 @@ Then(/^select Tires width for tires by size$/) do
 end
 
 Then(/^select Tires profile  for tires by size$/) do
+  sleep (2)
   @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[2]/div/ul/li/div/ul[1]/li["+(@tire_width_column)+"]/a").click
   @tires_profile = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[2]/div[2]/a").text
 end
@@ -196,7 +197,8 @@ Then(/^select Size for wheels by vehicle$/) do
 end
 
 And(/^verify that CLP is open$/) do
-  @browser.element(:class, 'page-title').text =='SHOP WHEELS' || "SEARCH RESULTS" || "SHOP TIRES"
+  sleep (2)
+  @browser.element(:class, "page-title").text
 end
 
 And(/^verify searching car by Year and Make for wheels$/) do
@@ -444,7 +446,7 @@ And(/^verify that CLP is displayed for selected size SHOP WHEELS$/) do
       @browser.close
     end
   else
-  @browser.element(:css, "span.page-title").text == "SHOP WHEELS & TIRE PACKAGES" || "SHOP WHEELS"
+  @browser.element(:css, "span.page-title").text == "SHOP WHEELS & TIRE PACKAGES"
   @browser.element(:css, "div.circle-indicator.selected").text == "1 Select a Wheel"
 end
 end
@@ -458,6 +460,7 @@ And(/^verify that PDP is open$/) do
 end
 
 When(/^user changed location in header to Alberta$/) do
+  sleep (2)
   @browser.element(:id, "headerNavLocationCTA").click
   @browser.element(:id, "locationChangeInput").send_keys "Alberta"
   @browser.element(:xpath, "//div[@class ='pac-item'][1]").when_present.click
@@ -468,8 +471,9 @@ Then(/^he should see Add to cart button$/) do
 end
 
 And(/^press on Add to Cart button$/) do
+  sleep (2)
   @browser.element(:id, "add-to-cart").when_present.click
-  sleep (3)
+  sleep (1)
   end
 
 Then(/^verify that Added to cart pop\-up is displayed$/) do
@@ -478,7 +482,8 @@ Then(/^verify that Added to cart pop\-up is displayed$/) do
 end
 
 And(/^press on Select different wheel link$/) do
-  @browser.element(:link_text, "Select a different wheel").when_present.click
+  sleep(2)
+  @browser.element(:link_text, "Select a different wheel").click
 end
 
 

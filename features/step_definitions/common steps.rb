@@ -5,7 +5,7 @@ require 'watir'
 
 
 Given(/^open the site$/) do
-  @browser = Watir::Browser.new :chrome
+  @browser = Watir::Browser.new :ff
   @browser.cookies.clear
   @browser.window.maximize
   #@browser.goto 'https://storefront:kt2017@development-store-kaltire.demandware.net/s/Kaltire/home'
