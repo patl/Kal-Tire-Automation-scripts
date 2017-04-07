@@ -236,9 +236,7 @@ Then(/^select Wheel Diameter$/) do
   end
   rescue Selenium::WebDriver::Error::NoSuchElementError
 end
-
-
-end
+  end
 
 And(/^verify searching Wheels size$/) do
   begin
