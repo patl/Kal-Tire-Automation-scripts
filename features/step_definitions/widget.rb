@@ -34,7 +34,7 @@ end
 Then(/^select Options for tires by vehicle$/) do
 
   begin
-    option = @browser.element(:link_text, "Option").present?
+    option = @browser.element(:link_text, "Option").visible?
     if option == true
 
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li/a").click
@@ -72,7 +72,7 @@ And(/^verify searching car by Year and Make$/) do
   p @selected_make
   p @selected_model
   p @selected_option
-  @browser.element(:css, ".sel-title").text.include? @year + " " + @selected_make + " " + @selected_model+ " " + @selected_option
+  @browser.element(:css, ".sel-title").text.include? @year+ " " +@selected_make+ " " +@selected_model+ " " +@selected_option
 end
 
 
@@ -391,7 +391,6 @@ Then(/^select Model for tires by vehicle Packages$/) do
       puts 'nothing select'
     end
   rescue Selenium::WebDriver::Error::NoSuchElementError
-
   end
   selected_model = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[1]/div[3]/a").text
   @selected_model =  selected_model
@@ -400,26 +399,23 @@ Then(/^select Model for tires by vehicle Packages$/) do
 end
 
 Then(/^select Options for tires by vehicle Packages$/) do
-
   begin
     option = @browser.element(:link_text, "Option").present?
     if option == true
-
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li/a").click
-           selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[1]/div[5]/a").text
+      selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[1]/div[5]/a").text
       @selected_option = selected_option
     else
       puts 'nothing select'
     end
   rescue Selenium::WebDriver::Error::NoSuchElementError
   end
+end
 
 Then(/^select Size for tires by vehicle Packages$/) do
-
   begin
     size = @browser.element(:link_text, "Size").present?
     if size == true
-
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[4]/div[6]/div/ul/li[1]/a").click
     else
       puts 'nothing select'
@@ -427,14 +423,13 @@ Then(/^select Size for tires by vehicle Packages$/) do
   rescue Selenium::WebDriver::Error::NoSuchElementError
   end
 end
-end
 
 Then(/^user selects OEM size for packages$/) do
   @browser.element(:class, "oe-size").wait_until_present.click
 end
 
 And(/^verify that CLP is displayed for selected size SHOP WHEELS$/) do
-  sleep (1)
+  sleep (3)
   #begin
    # if @browser.element(:css, ".page-title").text == "Search Results".upcase
     #  puts 'No results for packages'
@@ -447,7 +442,7 @@ end
 #end
 
 Then(/^user press on the first product from the grid$/) do
-   @browser.element(:xpath, "html/body/div[1]/div[4]/div[5]/div/div[3]/div/div/div[2]/div[2]/ul/li[1]/div/div[2]/div[1]/a/img").click
+   @browser.element(:xpath, ".//*[@class='product-image']/a/img[1]").click
 end
 
 And(/^verify that PDP is open$/) do
@@ -501,6 +496,7 @@ end
 
 
 Then(/^user press on the first product TIRE from the grid$/) do
+  sleep (3)
   @browser.element(:xpath, 'html/body/div[1]/div[4]/div[5]/div/div[3]/div/div/div[2]/div[3]/ul/li[7]/div/div[2]/div[1]/a/img').click
 end
 
