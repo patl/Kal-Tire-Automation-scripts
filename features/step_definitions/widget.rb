@@ -273,6 +273,7 @@ Then(/^press on Get Started button$/) do
  end
 
 And(/^verify that question 1 is displayed: Which road conditions will you be driving on with these tires$/) do
+  sleep (3)
   @browser.element(:xpath, "//div[@id='guidedSellingPathWrapper']/div/div/div").text == "1\nWhich road conditions will you be driving on with these tires?"
 end
 
@@ -312,7 +313,7 @@ When(/^user is on Q2:  Do you currently put on different tires for the winter\?$
 end
 
 Then(/^select Yes I swap to winter$/) do
-  @browser.element(:xpath, "//*[@id='guidedSellingPathWrapper']/div/div[2]/div/ul/li[1]").click
+    @browser.element(:xpath, "//*[@id='guidedSellingPathWrapper']/div/div[2]/div/ul/li[1]").when_present.click
 end
 
 
@@ -334,6 +335,7 @@ Then(/^select No My vehicle has one$/) do
 end
 
 Then(/^Verify that Q3 is displayed  In Canada, we recommend changing your tires for the winter to provide superior driving performance in winter road conditions$/) do
+  sleep (3)
   @browser.element(:css, "div.large-10.columns").text == "3\nIn Canada, we recommend changing your tires for the winter to provide superior driving performance in winter road conditions."
 end
 
@@ -365,18 +367,17 @@ Then(/^user presses on SHOP TIRE AND WHEEL PACKAGES BY VEHICLE$/) do
 end
 
 Then(/^verify that packages page is displayed$/) do
+  sleep (3)
   @browser.element(:css, "h2.psresults-title").text == "Shop Packages".upcase
 end
 
 Then(/^select Year for tires by vehicle Packages$/) do
-
-  @browser.element(:xpath, "(//a[contains(text(),2000)])[6]").click
+ @year = @browser.element(:xpath, "(//a[contains(text(),2000)])[6]").click
+ @year = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[1]/div[1]/a").text
 end
 
 Then(/^select Make for tires by vehicle Packages$/) do
-
   @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[4]/div[2]/div/ul/li/div/ul[1]/li[4]/a").click
-
   selected_make = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[1]/div[2]/a").text
   @selected_make =selected_make
 end
@@ -403,8 +404,8 @@ Then(/^select Options for tires by vehicle Packages$/) do
     option = @browser.element(:link_text, "Option").present?
     if option == true
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li/a").click
-      selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[1]/div[5]/a").text
-      @selected_option = selected_option
+      #selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[3]/ul/li/div/div[3]/div[1]/div[5]/a").text
+      #@selected_option = selected_option
     else
       puts 'nothing select'
     end

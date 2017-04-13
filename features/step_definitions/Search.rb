@@ -83,15 +83,14 @@ end
 
 And(/^press on Brand filter from Filter result section for wheels$/) do
   @browser.element(:link_text, "Brand").click
-
 end
 
 And(/^select the option for brand wheel$/) do
-  sleep(5)
-   @browser.element(:xpath, "//li[@class='is-submenu-item is-accordion-submenu-item']["+(@brand_option_w)+"]").click
-  sleep(5)
+  sleep(3)
+   #@browser.element(:xpath, "//li[@class='is-submenu-item is-accordion-submenu-item']["+(@brand_option_w)+"]").click
+  @browser.element(:xpath, "html/body/div[1]/div[4]/div[3]/div/div[2]/div/div/div[2]/div[1]/div/div/div[4]/ul/li/ul/li["+(@brand_option_w)+"]/a").click
+  sleep(3)
    @brand = @browser.element(:xpath, ".//*[@class='selected is-submenu-item is-accordion-submenu-item']").text
-
   end
 
 Then(/^verify that only products with selected option brand is displayed on the grid$/) do

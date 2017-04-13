@@ -8,8 +8,8 @@ Given(/^open the site$/) do
   @browser = Watir::Browser.new :chrome
   @browser.cookies.clear
   @browser.window.maximize
-  #@browser.goto 'https://storefront:kt2017@development-store-kaltire.demandware.net/s/Kaltire/home'
-  @browser.goto 'https://staging-store-kaltire.demandware.net/s/Kaltire/home'
+  @browser.goto 'https://storefront:kt2017@development-store-kaltire.demandware.net/s/Kaltire/home'
+  #@browser.goto 'https://staging-store-kaltire.demandware.net/s/Kaltire/home'
   begin
     alert = @browser.alert.exists?
     if alert == true

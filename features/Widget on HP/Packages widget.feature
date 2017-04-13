@@ -7,12 +7,14 @@ Feature: packages widget tests
     Then select Year for tires by vehicle Packages
     Then select Make for tires by vehicle Packages
     Then select Model for tires by vehicle Packages
-    Then select Options for tires by vehicle Packages
-    Then select Size for tires by vehicle Packages
-    Then verify that packages page is displayed
-    And verify searching car by Year and Make
+
+    #Then select Size for tires by vehicle Packages
+
 
         Scenario: user selects OEM size
+        Then select Options for tires by vehicle Packages
+        Then verify that packages page is displayed
+        And verify searching car by Year and Make
         Then user selects OEM size for packages
         And verify that CLP is displayed for selected size SHOP WHEELS
         Then user press on the first product from the grid
