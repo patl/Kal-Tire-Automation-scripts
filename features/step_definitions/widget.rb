@@ -32,35 +32,25 @@ Then(/^select Model for tires by vehicle$/) do
 end
 
 Then(/^select Options for tires by vehicle$/) do
-
-  begin
-    option = @browser.element(:link_text, "Option").visible?
-    if option == true
-
-      @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li/a").click
-
-      selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[1]/div[5]/a").text
-      @selected_option = selected_option
+  option = @browser.element(:link_text, "Option").visible?
+  if option == true
+    @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li/a").click
+    selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[1]/div[5]/a").text
+    @selected_option = selected_option
     else
       puts 'nothing select'
     end
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-  end
-end
+   end
 
 Then(/^select Size for tires by vehicle$/) do
 
-  begin
     size = @browser.element(:link_text, "Size").present?
     if size == true
-
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[6]/div/ul/li[1]/a").click
     else
       puts 'nothing select'
     end
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-  end
-end
+ end
 
 When(/^verify that searched page is displayed$/) do
   sleep(2)
@@ -93,23 +83,18 @@ Then(/^select Tires width for tires by size$/) do
 end
 
 Then(/^select Tires profile  for tires by size$/) do
-    @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[2]/div/ul/li/div/ul[1]/li["+(@tire_width_column)+"]/a").click
+  @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[2]/div/ul/li/div/ul[1]/li["+(@tire_width_column)+"]/a").click
   @tires_profile = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[2]/div[2]/a").text
 end
 
 Then(/^select Diameter  for tires by size$/) do
-
-  begin
     diameter = @browser.element(:link_text, "Diameter").visible?
     if diameter == true
-     
-      @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[3]/div/ul/li/div/ul/li[1]/a").click
+     @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[3]/div/ul/li/div/ul/li[1]/a").click
     else
       puts 'nothing select'
     end
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-  end
-end
+ end
 
 And(/^Verify searching Tires by Width$/) do
   @browser.element(:css, ".sel-subtitle").text.include? @tires_width + "/" + @tires_profile
@@ -174,11 +159,8 @@ Then(/^select Option for wheels by vehicle$/) do
 end
 
 Then(/^select Size for wheels by vehicle$/) do
-
-  begin
     size = @browser.element(:xpath, "(//a[contains(text(),'Size')])[6]").present?
     if size == true
-
       homologated = @browser.element(:class, "oemarkingModalCta").present?
       if homologated ==true
         @browser.element(:xpath, 'html/body/div[2]/div/div/a[2]').click
@@ -189,9 +171,7 @@ Then(/^select Size for wheels by vehicle$/) do
     else
       puts 'nothing select'
     end
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-  end
-end
+ end
 
 And(/^verify that CLP is open$/) do
   sleep (2)
@@ -199,15 +179,13 @@ And(/^verify that CLP is open$/) do
 end
 
 And(/^verify searching car by Year and Make for wheels$/) do
-  begin
     if @browser.element(:class, 'page-title').text =='SHOP WHEELS'
     then @browser.element(:css, ".sel-title").text.include? @year + " " + @selected_make + " " + @selected_model+ " " + @selected_option
     else
       p 'you are on no result page'
     end
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-  end
 end
+
 #wheels by size
 Then(/^user press on Shop Wheels by size tab$/) do
   @browser.element(:xpath, "//li[2]/ul/li/div/div[2]/div[2]").click
@@ -313,7 +291,7 @@ When(/^user is on Q2:  Do you currently put on different tires for the winter\?$
 end
 
 Then(/^select Yes I swap to winter$/) do
-    @browser.element(:xpath, "//*[@id='guidedSellingPathWrapper']/div/div[2]/div/ul/li[1]").when_present.click
+   @browser.element(:xpath, "//*[@id='guidedSellingPathWrapper']/div/div[2]/div/ul/li[2]").when_present.click
 end
 
 
@@ -498,7 +476,7 @@ end
 
 Then(/^user press on the first product TIRE from the grid$/) do
   sleep (3)
-  @browser.element(:xpath, 'html/body/div[1]/div[4]/div[5]/div/div[3]/div/div/div[2]/div[3]/ul/li[7]/div/div[2]/div[1]/a/img').click
+  @browser.element(:xpath, 'html/body/div[1]/div[4]/div[4]/div/div[3]/div/div/div[2]/div[3]/ul/li[1]/div/div[2]/div[1]/a/img').click
 end
 
 And(/^close the replace pop\-up$/) do
