@@ -32,8 +32,8 @@ Then(/^select Model for tires by vehicle$/) do
 end
 
 Then(/^select Options for tires by vehicle$/) do
-  option = @browser.element(:link_text, "Option").visible?
-  if option == true
+  @browser.element(:class, 'loader').wait_until_present
+   if @browser.element(:link_text, "Option").visible? == true
     @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li/a").click
     selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[1]/div[5]/a").text
     @selected_option = selected_option
@@ -43,9 +43,9 @@ Then(/^select Options for tires by vehicle$/) do
    end
 
 Then(/^select Size for tires by vehicle$/) do
-
-    size = @browser.element(:link_text, "Size").present?
-    if size == true
+@browser.element(:class, 'loader').wait_until_present
+    if @browser.element(:link_text, "Size").visible? == true
+    #if size == true
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[3]/div[4]/div[6]/div/ul/li[1]/a").click
     else
       puts 'nothing select'
@@ -88,9 +88,9 @@ Then(/^select Tires profile  for tires by size$/) do
 end
 
 Then(/^select Diameter  for tires by size$/) do
-    diameter = @browser.element(:link_text, "Diameter").visible?
-    if diameter == true
-     @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[3]/div/ul/li/div/ul/li[1]/a").click
+  @browser.element(:class, 'loader').wait_until_present
+    if @browser.element(:link_text, "Diameter").visible? == true
+       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[1]/ul/li/div/div[6]/div[4]/div[3]/div/ul/li/div/ul/li[1]/a").click
     else
       puts 'nothing select'
     end
@@ -143,10 +143,7 @@ Then(/^select Model for wheels by vehicle$/) do
 end
 
 Then(/^select Option for wheels by vehicle$/) do
-
-  begin
-    option = @browser.element(:xpath, "(//a[contains(text(),'Option')])[2]").present?
-    if option == true
+    if @browser.element(:link_text, "Option").visible ==true
 
       @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[2]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li[1]/a").click
       selected_option = @browser.element(:xpath, "html/body/div[1]/div[4]/div[2]/div[2]/div/div/div[2]/div/ul/li[2]/ul/li/div/div[3]/div[4]/div[5]/div/ul/li/div/ul/li[1]/a").text
@@ -154,9 +151,9 @@ Then(/^select Option for wheels by vehicle$/) do
     else
       puts 'nothing select'
     end
-  rescue Selenium::WebDriver::Error::NoSuchElementError
+
   end
-end
+
 
 Then(/^select Size for wheels by vehicle$/) do
     size = @browser.element(:xpath, "(//a[contains(text(),'Size')])[6]").present?
